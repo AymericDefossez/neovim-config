@@ -11,8 +11,8 @@ return {
     config = function()
       local map = vim.keymap.set
       local opts = { silent = true }
-      map("n", "<leader>e", ":Neotree focus left<cr>", opts)
-      map("n", "<C-m>", ":Neotree toggle left<cr>", opts)
+      map("n", "<leader>e", ":Neotree focus left reveal<cr>", opts)
+      map("n", "<C-m>", ":Neotree toggle left reveal<cr>", opts)
     end
   }
 }

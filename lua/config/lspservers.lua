@@ -2,6 +2,6 @@ return {
   "angularls",
   "html",
   "cssls",
-  "tsserver",
+  "ts_ls",
   "lua_ls",
 }

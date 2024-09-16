@@ -1,7 +1,8 @@
 local utils = require("utils")
 local map = vim.keymap.set
 
-map("n", "<leader>q", "<cmd>q<cr>")
+map("n", "<leader>qq", "<cmd>q<cr>")
+map("n", "<leader>qa", "<cmd>qa<cr>")
 map("n", "<leader>w", "<cmd>w<cr>")
 
 -- Barbar keymap setup
@@ -23,6 +24,9 @@ map("n", "<c-.>", "<cmd>BufferMoveNext<cr>", dsc("Move tab to right"))
 map("n", "<c-<>", "<cmd>BufferScrollLeft<cr>", dsc("Scroll tab to left"))
 map("n", "<c->>", "<cmd>BufferScrollRight<cr>", dsc("Scroll tab to right"))
 
+map({"n", "v", "i"} , "<s-<ScrollWheelUp>>", "zh", dsc("Scroll tab to left"))
+map({"n", "v", "i"} , "<s-<ScrollWheelDown>>", "zl", dsc("Scroll tab to right"))
+
 map("n", "<leader>bc", "<cmd>BufferClose<cr>", dsc("Close the current tab"))
 map("n", "<leader>bhc", "<cmd>BufferCloseBuffersLeft<cr>", dsc("Close the left tabs"))
 map("n", "<leader>blc", "<cmd>BufferCloseBuffersRight<cr>", dsc("Close the right tabs"))
@@ -30,3 +34,8 @@ map("n", "<leader>blc", "<cmd>BufferCloseBuffersRight<cr>", dsc("Close the right
 map("n", "<leader>bp", "<cmd>BufferPin<cr>", dsc("Pin/Unpin the current tab"))
 map("n", "<leader>bbc", "<cmd>BufferCloseAllButCurrent<cr>", dsc(""))
 map("n", "<leader>bbpc", "<cmd>BufferCloseAllButPinned<cr>", dsc(""))
+
+map("n", "<esc><esc>", "<cmd>noh<cr>", dsc("Clear search highlights"))
+
+map("v", "<C-c>", '"+y', dsc("Copy to clipboard"))
+map("n", "<C-v>", '"+p', dsc("Paste from clipboard"))

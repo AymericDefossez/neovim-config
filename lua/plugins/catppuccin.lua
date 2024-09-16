@@ -6,7 +6,7 @@ return {
     opts = {
       flavour = "auto",
       background = {
-        light = "latte",
+        light = "mocha",
         dark = "mocha",
       },
       integrations = {
@@ -61,7 +61,7 @@ return {
         vim.api.nvim_set_option("background", "dark")
       end,
       set_light_mode = function()
-        vim.api.nvim_set_option("background", "light")
+        vim.api.nvim_set_option("background", "dark")
       end,
     },
   }
