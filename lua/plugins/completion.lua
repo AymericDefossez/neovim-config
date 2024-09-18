@@ -1,13 +1,3 @@
-local function do_if_visible(cmp, fn)
-  return function(fallback)
-    if cmp.visible() then
-      fn()
-      return
-    end
-    fallback()
-  end
-end
-
 return {
   {
     "L3MON4D3/LuaSnip",
@@ -38,12 +28,6 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          -- ["<Tab>"] = cmp.mapping(do_if_visible(cmp, function()
-            -- cmp.select_next_item()
-          -- end)),
-          -- ["<S-Tab>"] = cmp.mapping(do_if_visible(cmp, function()
-            -- cmp.select_prev_item()
-          -- end)),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
