@@ -33,9 +33,14 @@ map("n", "<leader>blc", "<cmd>BufferCloseBuffersRight<cr>", dsc("Close the right
 
 map("n", "<leader>bp", "<cmd>BufferPin<cr>", dsc("Pin/Unpin the current tab"))
 map("n", "<leader>bbc", "<cmd>BufferCloseAllButCurrent<cr>", dsc(""))
-map("n", "<leader>bbpc", "<cmd>BufferCloseAllButPinned<cr>", dsc(""))
+map("n", "<c-k>w", "<cmd>BufferCloseAllButPinned<cr>", dsc("Close all tabs"))
 
 map("n", "<leader><esc>", "<cmd>noh<cr>", dsc("Clear search highlights"))
 
 map("v", "<C-c>", '"+y', dsc("Copy to clipboard"))
 map("n", "<C-v>", '"+p', dsc("Paste from clipboard"))
+
+map("n", "<c-h>", "<c-w>h", dsc("Move to the left window"))
+map("n", "<c-j>", "<c-w>j", dsc("Move to the bottom window"))
+map("n", "<c-k>", "<c-w>k", dsc("Move to the top window"))
+map("n", "<c-l>", "<c-w>l", dsc("Move to the right window"))

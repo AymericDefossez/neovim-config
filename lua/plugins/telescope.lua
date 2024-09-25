@@ -11,6 +11,7 @@ return {
       map("n", "<leader>fg", builtin.live_grep, {})
       map("n", "<leader>fb", builtin.buffers, {})
       map("n", "<leader>fh", builtin.help_tags, {})
+      map("n", "<leader>fq", builtin.quickfix, {})
     end
   },
   {
@@ -18,6 +19,10 @@ return {
     config = function()
       local telescope = require("telescope")
       telescope.setup({
+        defaults = {
+          path_display = { "smart" },
+          dynamic_preview_title = true,
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({})
