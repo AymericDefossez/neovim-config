@@ -34,3 +34,17 @@ autocmd("CursorMoved", {
     end
   end
 })
+
+-- vim.cmd("set foldmethod=expr")
+-- vim.o.foldexpr = function()
+--   local match = vim.fn.match
+--   local line = vim.fn.getline(vim.v.lnum)
+--
+--   if match(line, "{$") >= 0 then
+--     return "a1"
+--   elseif match(line, "}$") >= 0 then
+--     return "s1"
+--   else
+--     return "="
+--   end
+-- end

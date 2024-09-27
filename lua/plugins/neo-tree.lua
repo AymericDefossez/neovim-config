@@ -13,6 +13,10 @@ return {
       local opts = { silent = true }
       map("n", "<leader>e", ":Neotree focus left reveal<cr>", opts)
       map("n", "<C-m>", ":Neotree toggle left reveal<cr>", opts)
+
+      require("neo-tree").setup({
+        close_if_last_window = true,
+      })
     end
   }
 }
