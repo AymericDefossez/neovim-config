@@ -33,7 +33,10 @@ map("n", "<leader>blc", "<cmd>BufferCloseBuffersRight<cr>", dsc("Close the right
 
 map("n", "<leader>bp", "<cmd>BufferPin<cr>", dsc("Pin/Unpin the current tab"))
 map("n", "<leader>bbc", "<cmd>BufferCloseAllButCurrent<cr>", dsc(""))
-map("n", "<c-k>w", "<cmd>BufferCloseAllButPinned<cr>", dsc("Close all tabs"))
+map("n", "<c-k>w", function()
+  vim.cmd("BufferCloseAllButPinned")
+  vim.cmd("Alpha")
+end, dsc("Close all tabs"))
 
 map("n", "<leader><esc>", "<cmd>noh<cr>", dsc("Clear search highlights"))
 
