@@ -4,6 +4,7 @@ vim.cmd(":set shiftwidth=2")
 vim.cmd(":set expandtab")
 vim.cmd(":set wrap!")
 vim.cmd(":set clipboard=unnamedplus")
+vim.cmd(":set updatetime=500")
 
 vim.g.clipboard = {
   name = "win32yank-wsl",
@@ -23,13 +24,16 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 augroup("showDiagnostics", { clear = true })
-autocmd("CursorMoved", {
+autocmd("CursorHold", {
   group = "showDiagnostics",
   pattern = { "*" },
   callback = function ()
     if vim.diagnostic.is_enabled() then
       if not hasfloatingwin() then
-        vim.diagnostic.open_float()
+        vim.diagnostic.open_float({
+          scope = "cursor",
+          border = "rounded",
+        })
       end
     end
   end
