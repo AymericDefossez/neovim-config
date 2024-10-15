@@ -11,8 +11,8 @@ return {
     ["}"] = { escape = true, close = false, pair = "{}" },
 
     ['"'] = { escape = true, close = true, pair = '""' },
-    ["'"] = { escape = true, close = true, pair = "''" },
-    ["`"] = { escape = true, close = true, pair = "``" },
+    ["'"] = { escape = true, close = true, pair = "''", disabled_filetypes = { "html" } },
+    ["`"] = { escape = true, close = true, pair = "``", disabled_filetypes = { "html" } },
   },
   options = {
     disabled_filetypes = { "text" },
