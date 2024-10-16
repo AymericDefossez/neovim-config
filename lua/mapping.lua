@@ -11,8 +11,8 @@ local function dsc(description)
   return utils.merge_tables(barbar_opts, { description = description })
 end
 
-map("n", "<s-tab>", "<cmd>BufferPrevious<cr>", dsc("Go to the previous tab"))
-map("n", "<tab>", "<cmd>BufferNext<cr>", dsc("Go to the next tab"))
+map({"n", "i"}, "<A-Left>", "<cmd>BufferPrevious<cr>", dsc("Go to the previous tab"))
+map({"n", "i"}, "<A-Right>", "<cmd>BufferNext<cr>", dsc("Go to the next tab"))
 
 for i=1,10 do
   map("n", "<leader>" .. (i % 10), "<cmd>BufferGoto " .. i .. "<cr>", dsc("Go to the tab " .. i))
