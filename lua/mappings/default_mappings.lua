@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local opts = require("mappings.default_opts")
+local opts = require("mappings.default_mappings_opts")
 
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)

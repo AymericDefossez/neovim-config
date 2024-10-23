@@ -1,2 +1,2 @@
-require("options.default")
-require("options.clipboard")
+require("options.default_options")
+require("options.clipboard_options")

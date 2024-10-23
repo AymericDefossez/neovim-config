@@ -1,6 +1,6 @@
 return {
   "github/copilot.vim",
   config = function()
-    require("mappings.copilot")
+    require("mappings.copilot_mappings")
   end
 }

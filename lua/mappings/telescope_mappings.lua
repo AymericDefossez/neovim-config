@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local opts = require("mappings.default_opts")
+local opts = require("mappings.default_mappings_opts")
 local builtin = require('telescope.builtin')
 
 map('n', '<leader>ff', builtin.find_files, opts)

@@ -1,4 +1,4 @@
-local autoclose_config = require("configs.autoclose")
+local autoclose_config = require("configs.autoclose_configs")
 
 return {
 	{

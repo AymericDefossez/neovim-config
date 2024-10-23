@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local opts = require("mappings.default_opts")
+local opts = require("mappings.default_mappings_opts")
 
 map({ "n", "i" }, "<A-Right>", "<Cmd>BufferNext<CR>", opts)
 map({ "n", "i" }, "<A-Left>", "<Cmd>BufferPrevious<CR>", opts)

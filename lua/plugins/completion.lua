@@ -11,7 +11,7 @@ return {
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		local completion_config = require("configs.completion")
+		local completion_config = require("configs.completion_configs")
 		require("luasnip.loaders.from_vscode").lazy_load()
 
 		cmp.setup(completion_config(luasnip, cmp))

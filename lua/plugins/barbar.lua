@@ -1,4 +1,3 @@
-
 return {
   "romgrk/barbar.nvim",
   version = "^1.0.0",
@@ -10,9 +9,9 @@ return {
     vim.g.barbar_auto_setup = false
   end,
   config = function()
-    local barbar_config = require("configs.barbar")
+    local barbar_config = require("configs.barbar_configs")
 
     require("barbar").setup(barbar_config)
-    require("mappings.barbar")
+    require("mappings.barbar_mappings")
   end,
 }

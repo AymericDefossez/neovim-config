@@ -1,2 +1,2 @@
 require("lazy.lazy")
-require("configs.default")
+require("configs.default_configs")
