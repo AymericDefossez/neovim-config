@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 local opts = require("mappings.default_opts")
 
-map("n", "<A-Right>", "<Cmd>BufferNext<CR>", opts)
-map("n", "<A-Left>", "<Cmd>BufferPrevious<CR>", opts)
+map({ "n", "i" }, "<A-Right>", "<Cmd>BufferNext<CR>", opts)
+map({ "n", "i" }, "<A-Left>", "<Cmd>BufferPrevious<CR>", opts)
 map("n", "<leader>bc", "<Cmd>BufferClose<CR>", opts)
 map("n", "<leader>blc", "<Cmd>BufferCloseBuffersRight<CR>", opts)
 map("n", "<leader>bhc", "<Cmd>BufferCloseBuffersLeft<CR>", opts)

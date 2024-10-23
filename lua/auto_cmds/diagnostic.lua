@@ -7,7 +7,9 @@ vim.api.nvim_create_autocmd("CursorHold", {
 	callback = function ()
 		if vim.diagnostic.is_enabled() then
 			if not has_floating_win() then
-				vim.diagnostic.open_float()
+				vim.diagnostic.open_float({
+          border = "rounded",
+        })
 			end
 		end
 	end
