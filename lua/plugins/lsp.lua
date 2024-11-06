@@ -18,8 +18,8 @@ return {
 			local mason_lspconfig = require("mason-lspconfig")
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 			mason_lspconfig.setup(lsp_config.mason_lspconfig_config(lspconfig, capabilities))
+      require("mappings.lsp_mappings")
 		end
-	}
+	},
 }

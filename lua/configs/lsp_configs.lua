@@ -4,6 +4,7 @@ local lsp_servers = {
 	"html",
 	"lua_ls",
 	"ts_ls",
+  "emmet_ls",
 }
 
 local mason_config = {

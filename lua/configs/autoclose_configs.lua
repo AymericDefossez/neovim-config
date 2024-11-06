@@ -9,6 +9,8 @@ return {
     [")"] = { escape = true, close = false, pair = "()" },
     ["]"] = { escape = true, close = false, pair = "[]" },
     ["}"] = { escape = true, close = false, pair = "{}" },
+    [";"] = { escape = true, close = false, pair = ";;" },
+    [","] = { escape = true, close = false, pair = ",," },
 
     ['"'] = { escape = true, close = true, pair = '""' },
     ["'"] = { escape = true, close = true, pair = "''", disabled_filetypes = { "html" } },
