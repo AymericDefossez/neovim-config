@@ -6,6 +6,9 @@ return {
 		opts = autoclose_config,
 	},
 	{
-		"alvan/vim-closetag"
+		"alvan/vim-closetag",
+    config = function()
+      vim.g.closetag_shortcut = '!'
+    end,
 	}
 }
