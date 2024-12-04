@@ -36,7 +36,7 @@ theme.section.header.val = {
 theme.section.buttons.val = {
   theme.button("e", "  New file", ":enew<CR>"),
   theme.button("f", "󰈞  Find file", ":Telescope find_files<CR>"),
-  theme.button("s", "  Search session", ":SessionRestore<CR>"),
+  theme.button("s", "  Open last session", ":SessionRestore<CR>"),
   theme.button("q", "󰅙  Quit", ":qa<CR>"),
 }
 
