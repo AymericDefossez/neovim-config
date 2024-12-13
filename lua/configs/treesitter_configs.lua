@@ -12,4 +12,7 @@ return {
   incremental_selection = {
     enable = true,
   },
+  textobjects = {
+    enable = true,
+  }
 }
