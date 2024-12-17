@@ -1,5 +1,6 @@
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
+local previewers = require("telescope.previewers")
 local conf = require("telescope.config").values
 
 local M = {}
@@ -61,10 +62,39 @@ local function get_functions()
       name = signature,
       line = range[1] + 1,
       col = range[2] + 1,
+      bufnr = vim.api.nvim_get_current_buf(),
     })
   end
 
   return functions
+end
+
+local function preview_function(self, entry)
+  local line = entry.value.line
+  local bufnr = entry.value.bufnr
+
+  local parser = vim.treesitter.get_parser(bufnr)
+  local tree = parser:parse()[1]
+  local root = tree:root()
+
+  local target_node = nil
+  for node in root:iter_children() do
+    print("node type :" .. node:type() .. " at " .. node:range())
+    local start_row, _, end_row, _ = node:range()
+    if start_row <= line - 1 and end_row >= line - 1 and node:type() == "method_definition" then
+        target_node = node
+        break
+    end
+  end
+
+  if not target_node then
+    vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, { "No preview available" })
+    return
+  end
+
+  local method_text = vim.treesitter.get_node_text(target_node, bufnr)
+
+  vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, vim.split(method_text, "\n"))
 end
 
 M.function_picker = function(opts)
@@ -84,6 +114,9 @@ M.function_picker = function(opts)
       end
     }),
     sorter = conf.generic_sorter(opts),
+    previewer = previewers.new_buffer_previewer({
+      define_preview = preview_function,
+    }),
     attach_mappings = function(prompt_bufnr)
       local actions = require("telescope.actions")
       local action_state = require("telescope.actions.state")
