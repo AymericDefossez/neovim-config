@@ -48,13 +48,15 @@ local function get_functions()
     local signature = build_function_signature(name_node, accessor_node, params_node, type_node, 0)
     local range = { name_node:range() }
 
-    print("Function: " .. signature .. " at " .. range[1] .. ":" .. range[2])
+    print("In file " .. vim.api.nvim_buf_get_name(0) .. " Function: " .. signature .. " at " .. range[1] .. ":" .. range[2])
     table.insert(functions, {
       name = signature,
       line = range[1] + 1,
       col = range[2] + 1,
       bufnr = vim.api.nvim_get_current_buf(),
+      path = vim.api.nvim_buf_get_name(0),
       parent_node = parent_node,
+      filetype = vim.bo.filetype,
     })
   end
 
@@ -62,18 +64,21 @@ local function get_functions()
 end
 
 local function preview_function(self, entry)
-  local bufnr = entry.value.bufnr
-  local parent_node = entry.value.parent_node
-
-  if not parent_node then
-    vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, { "No preview available" })
-    return
-  end
-
-  local parent_node_text = vim.treesitter.get_node_text(parent_node, bufnr)
-  print("Parent node text: " .. parent_node_text)
-
-  vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, vim.split(parent_node_text, "\n"))
+  local utils = require("telescope.previewers.utils")
+  utils.highlighter(self.state.bufnr, entry.value.filetype)
+  return conf.buffer_previewer_maker(entry.value.path, self.state.bufnr)
+  -- local bufnr = entry.value.bufnr
+  -- local parent_node = entry.value.parent_node
+  --
+  -- if not parent_node then
+  --   vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, { "No preview available" })
+  --   return
+  -- end
+  --
+  -- local parent_node_text = vim.treesitter.get_node_text(parent_node, bufnr)
+  -- print("Parent node text: " .. parent_node_text)
+  --
+  -- vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, vim.split(parent_node_text, "\n"))
 end
 
 M.function_picker = function(opts)
@@ -94,6 +99,7 @@ M.function_picker = function(opts)
     }),
     sorter = conf.generic_sorter(opts),
     previewer = previewers.new_buffer_previewer({
+      title = "Function Preview",
       define_preview = preview_function,
     }),
     attach_mappings = function(prompt_bufnr)
