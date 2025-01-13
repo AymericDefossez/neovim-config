@@ -3,6 +3,7 @@ local ensured_installed = { "lua", "html", "css", "typescript", "javascript", "j
 return {
   ensure_installed = ensured_installed,
   sync_install = false,
+  auto_install = true,
   highlight = {
     enable = true,
   },

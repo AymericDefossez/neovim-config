@@ -44,7 +44,6 @@ local function get_functions()
     local name_node = match[2]
     local params_node = match[3]
     local type_node = match[4]
-    local parent_node = name_node:parent()
     local signature = build_function_signature(name_node, accessor_node, params_node, type_node, 0)
     local range = { name_node:range() }
 
@@ -55,7 +54,6 @@ local function get_functions()
       col = range[2] + 1,
       bufnr = vim.api.nvim_get_current_buf(),
       path = vim.api.nvim_buf_get_name(0),
-      parent_node = parent_node,
       filetype = vim.bo.filetype,
     })
   end
@@ -65,20 +63,18 @@ end
 
 local function preview_function(self, entry)
   local utils = require("telescope.previewers.utils")
-  utils.highlighter(self.state.bufnr, entry.value.filetype)
-  return conf.buffer_previewer_maker(entry.value.path, self.state.bufnr)
-  -- local bufnr = entry.value.bufnr
-  -- local parent_node = entry.value.parent_node
-  --
-  -- if not parent_node then
-  --   vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, { "No preview available" })
-  --   return
-  -- end
-  --
-  -- local parent_node_text = vim.treesitter.get_node_text(parent_node, bufnr)
-  -- print("Parent node text: " .. parent_node_text)
-  --
-  -- vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, vim.split(parent_node_text, "\n"))
+  conf.buffer_previewer_maker(entry.value.path, self.state.bufnr)
+  vim.defer_fn(function()
+    if vim.api.nvim_buf_is_loaded(self.state.bufnr) then
+      vim.api.nvim_buf_call(self.state.bufnr, function()
+        local total_lines = vim.api.nvim_buf_line_count(self.state.bufnr)
+        local target_line = math.max(0, math.min(entry.value.line - 1, total_lines - 1))
+        vim.api.nvim_buf_add_highlight(self.state.bufnr, -1, "Search", target_line, 0, -1)
+      end)
+      utils.highlighter(self.state.bufnr, entry.value.filetype)
+      vim.api.nvim_win_set_cursor(self.state.winid, { entry.value.line, 0 })
+    end
+  end, 20)
 end
 
 M.function_picker = function(opts)

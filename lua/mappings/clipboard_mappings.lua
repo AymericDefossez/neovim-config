@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 local opts = require("mappings.default_mappings_opts")
 
-map({ "n", "v" }, "<C-c>", '"+y', opts)
-map({ "n", "v" }, "<C-x>", '"+x', opts)
-map({ "n", "v" }, "<C-v>", '"+p', opts)
+map("v", "<C-c>", '"+y', opts)
+map("v", "<C-x>", '"+x', opts)
+map("i", "<C-v>", '"+p', opts)
