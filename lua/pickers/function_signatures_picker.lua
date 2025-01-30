@@ -47,7 +47,7 @@ local function get_functions()
     local signature = build_function_signature(name_node, accessor_node, params_node, type_node, 0)
     local range = { name_node:range() }
 
-    print("In file " .. vim.api.nvim_buf_get_name(0) .. " Function: " .. signature .. " at " .. range[1] .. ":" .. range[2])
+    print("Find function: " .. signature .. " at " .. range[1] .. ":" .. range[2])
     table.insert(functions, {
       name = signature,
       line = range[1] + 1,
@@ -62,8 +62,14 @@ local function get_functions()
 end
 
 local function preview_function(self, entry)
+  -- print("Preview function: " .. entry.value.name .. " on bufnr " .. self.state.bufnr)
   local utils = require("telescope.previewers.utils")
-  conf.buffer_previewer_maker(entry.value.path, self.state.bufnr)
+
+  print("bun_name: " .. vim.api.nvim_buf_get_name(self.state.bufnr) .. " entry.path: " .. entry.value.path)
+  if vim.api.nvim_buf_get_name(self.state.bufnr) ~= entry.value.path then
+    conf.buffer_previewer_maker(entry.value.path, self.state.bufnr)
+  end
+
   vim.defer_fn(function()
     if vim.api.nvim_buf_is_loaded(self.state.bufnr) then
       vim.api.nvim_buf_call(self.state.bufnr, function()
@@ -74,7 +80,7 @@ local function preview_function(self, entry)
       utils.highlighter(self.state.bufnr, entry.value.filetype)
       vim.api.nvim_win_set_cursor(self.state.winid, { entry.value.line, 0 })
     end
-  end, 20)
+  end, 50)
 end
 
 M.function_picker = function(opts)
