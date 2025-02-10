@@ -11,4 +11,4 @@ map('n', '<leader>fr', builtin.lsp_references, opts)
 map('n', '<leader>fd', builtin.lsp_definitions, opts)
 map('n', '<leader>fi', builtin.lsp_implementations, opts)
 
-map('n', '<leader>fs', function() require("pickers.function_signatures_picker").function_picker() end, opts)
+map('n', '<leader>fs', function() require("pickers.signatures_picker").signatures_picker() end, opts)

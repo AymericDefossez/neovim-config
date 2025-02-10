@@ -1,4 +1,4 @@
-local ensured_installed = { "lua", "html", "css", "typescript", "javascript", "jsdoc" }
+local ensured_installed = { "lua", "html", "css", "typescript", "javascript", "jsdoc", "query" }
 
 return {
   ensure_installed = ensured_installed,
