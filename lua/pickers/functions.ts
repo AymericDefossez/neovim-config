@@ -11,8 +11,13 @@ export class Functions {
 
   private readonly _version: string = '1.0.0';
 
+  public constructor(
+    private readonly _name: string
+  ) {}
+
   public multiply(a: number, b: number): number {
-    return a * b;
+    const result: number = a * b;
+    return result;
   }
 
   substract(a: number, b: number): number {
@@ -25,5 +30,9 @@ export class Functions {
 
   public static square(a: number) {
     return a * a;
+  }
+
+  static cube(a: number): number {
+    return this.square(a) * a;
   }
 }
