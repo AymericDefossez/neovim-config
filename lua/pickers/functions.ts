@@ -2,6 +2,17 @@ const PI: number = 3.14;
 const E = 2.71;
 let x: number = 10;
 
+type Operation = (a: number, b: number) => number;
+
+export type OperationType = 'add' | 'substract' | 'multiply' | 'divide';
+
+interface Calculator {
+  add: Operation;
+  substract: Operation;
+  multiply: Operation;
+  divide: Operation;
+}
+
 export function add(a: number, b: number): number {
   return a + b;
 }

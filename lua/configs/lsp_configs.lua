@@ -60,8 +60,10 @@ local function mason_lspconfig_config(lspconfig, capabilities)
             ts_probe_location = angularls_path
             ng_probe_location = vim.fs.joinpath(angularls_path, "@angular", "language-server")
             local ngserver_bin = vim.fs.joinpath(angularls_path, "@angular", "language-server", "bin", "ngserver")
+            print("Using global angular-language-server")
             return { ngserver_bin, "--stdio", "--tsProbeLocations", ts_probe_location, "--ngProbeLocations", ng_probe_location }
           end
+          print("Using local angular-language-server")
           return { "npx", "ngserver", "--stdio", "--tsProbeLocations", ts_probe_location, "--ngProbeLocations", ng_probe_location }
         end
 
