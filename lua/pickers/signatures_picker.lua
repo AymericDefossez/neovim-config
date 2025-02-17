@@ -1,6 +1,8 @@
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
 
 local M = {}
 
@@ -10,7 +12,7 @@ local signatures_types = {
   function_declaration = require("pickers.getters.function_declaration_getter"),
   type_alias_declaration = require("pickers.getters.type_alias_declaration_getter"),
   interface_declaration = require("pickers.getters.interface_declaration_getter"),
-  -- variable_declarator = require("pickers.getters.variable_declarator_getter"),
+  variable_declarator = require("pickers.getters.variable_declarator_getter"),
 }
 
 local function get_signatures()
@@ -24,11 +26,14 @@ local function get_signatures()
     print("looping on " .. type)
     local treesitter_query = vim.treesitter.query.parse(vim.bo.filetype, data.query)
     for _, match, _ in treesitter_query:iter_matches(root, 0) do
-      table.insert(signatures, data.get_definitions(match))
+      local signature = data.get_definitions(match)
+      if signature.name then
+        table.insert(signatures, signature)
+      end
     end
+    -- table.insert(signatures, { name = data.title, path = vim.api.nvim_buf_get_name(0), line = 0, disabled = true })
   end
 
-  -- print("signatures: " .. vim.inspect(signatures))
   return signatures
 end
 
@@ -50,16 +55,13 @@ M.signatures_picker = function(opts)
           display = entry.name,
           ordinal = entry.name,
           path = entry.path,
-          lnum = entry.line
+          lnum = entry.line,
         }
       end
     }),
     sorter = conf.generic_sorter(opts),
     previewer = conf.grep_previewer(opts),
     attach_mappings = function(prompt_bufnr)
-      local actions = require("telescope.actions")
-      local action_state = require("telescope.actions.state")
-
       actions.select_default:replace(function()
         actions.close(prompt_bufnr)
         local selection = action_state.get_selected_entry()

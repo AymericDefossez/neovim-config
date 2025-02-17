@@ -23,6 +23,7 @@ local function get_type_alias_declarations(match)
 end
 
 return {
+  title = "Types",
   query = query,
   get_definitions = get_type_alias_declarations,
 }

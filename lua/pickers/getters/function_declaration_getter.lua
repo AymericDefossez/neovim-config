@@ -29,6 +29,7 @@ local function get_function_declarations(match)
 end
 
 return {
+  title = "Functions",
   query = query,
   get_definitions = get_function_declarations,
 }

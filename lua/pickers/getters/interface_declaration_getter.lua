@@ -23,6 +23,7 @@ local function get_interface_declarations(match)
 end
 
 return {
+  title = "Interfaces",
   query = query,
   get_definitions = get_interface_declarations,
 }

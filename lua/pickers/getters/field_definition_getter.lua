@@ -29,6 +29,7 @@ local function get_field_definitions(match)
 end
 
 return {
+  title = "Fields",
   query = query,
   get_definitions = get_field_definitions,
 }

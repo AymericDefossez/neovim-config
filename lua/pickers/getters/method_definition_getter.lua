@@ -32,6 +32,7 @@ local function get_method_definitions(match)
 end
 
 return {
+  title = "Methods",
   query = query,
   get_definitions = get_method_definitions,
 }
