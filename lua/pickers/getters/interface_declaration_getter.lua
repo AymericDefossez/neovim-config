@@ -1,7 +1,7 @@
 local function build_interface_signature(name_node, bufnr)
   local name = vim.treesitter.get_node_text(name_node, bufnr)
 
-  return string.format("interface %s", name)
+  return string.format("Interface: %s", name)
 end
 
 local query = [[

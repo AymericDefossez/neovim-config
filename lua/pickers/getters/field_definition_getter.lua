@@ -3,7 +3,7 @@ local function build_field_signature(name_node, accessor_node, type_node, bufnr)
   local accessor = accessor_node and vim.treesitter.get_node_text(accessor_node, bufnr) .. " " or ""
   local type = type_node and vim.treesitter.get_node_text(type_node, bufnr) or ""
 
-  return string.format("%s%s%s", accessor, name, type)
+  return string.format("Field: %s%s%s", accessor, name, type)
 end
 
 local query = [[

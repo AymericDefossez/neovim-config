@@ -2,7 +2,7 @@ local function build_variable_signature(name_node, type_node, bufnr)
   local name = vim.treesitter.get_node_text(name_node, bufnr)
   local type = type_node and vim.treesitter.get_node_text(type_node, bufnr) or ""
 
-  return string.format("%s%s", name, type)
+  return string.format("Variable: %s%s", name, type)
 end
 
 local query = [[

@@ -4,7 +4,7 @@ local function build_method_signature(name_node, accessor_node, params_node, typ
   local params = params_node and vim.treesitter.get_node_text(params_node, bufnr):gsub("[%s\r\n]+", " ") or "()"
   local return_type = type_node and vim.treesitter.get_node_text(type_node, bufnr) or ""
 
-  return string.format("%s%s%s%s", accessor, name, params, return_type)
+  return string.format("Method: %s%s%s%s", accessor, name, params, return_type)
 end
 
 local query = [[

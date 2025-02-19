@@ -11,4 +11,8 @@ map('n', '<leader>fr', builtin.lsp_references, opts)
 map('n', '<leader>fd', builtin.lsp_definitions, opts)
 map('n', '<leader>fi', builtin.lsp_implementations, opts)
 
-map('n', '<leader>fs', function() require("pickers.signatures_picker").signatures_picker() end, opts)
+map('n', '<leader>fs', function()
+  local authorized_file_types = { 'typescript' }
+  if not vim.tbl_contains(authorized_file_types, vim.bo.filetype) then return end
+  require("pickers.signatures_picker").signatures_picker()
+end, opts)

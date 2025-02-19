@@ -1,7 +1,7 @@
 local function build_type_signature(name_node, bufnr)
   local name = vim.treesitter.get_node_text(name_node, bufnr)
 
-  return string.format("type %s", name)
+  return string.format("Type: %s", name)
 end
 
 local query = [[
