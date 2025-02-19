@@ -1,8 +1,7 @@
 return {
   "goolord/alpha-nvim",
   config = function()
-    local alpha_config = require("configs.alpha_configs")
-
-    require("alpha").setup(alpha_config)
+    local opts = require("configs.alpha_configs")
+    require("alpha").setup(opts)
   end
 }
