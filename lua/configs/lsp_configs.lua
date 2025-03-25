@@ -5,6 +5,7 @@ local lsp_servers = {
 	"lua_ls",
 	"ts_ls",
   "emmet_ls",
+  "rust_analyzer",
 }
 
 local mason_config = {
@@ -42,7 +43,7 @@ local function mason_lspconfig_config(lspconfig, capabilities)
       ["angularls"] = function()
         local initial_root_dir = vim.fn.getcwd()
         local function create_cmd(root_dir)
-          -- register the local probe loction
+          -- register the local probe location
           local ts_probe_location = vim.fs.joinpath(root_dir, "node_modules")
           local ng_probe_location = ts_probe_location
 
