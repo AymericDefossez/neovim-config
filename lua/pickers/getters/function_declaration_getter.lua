@@ -20,10 +20,11 @@ local function get_function_declarations(match)
   local signature = build_function_signature(name_node, params_node, type_node, 0)
   local range = { name_node:range() }
 
-  print("Find function: " .. signature .. " at " .. range[1] .. ":" .. range[2])
+  -- print("Find function: " .. signature .. " at " .. range[1] .. ":" .. range[2])
   return {
     name = signature,
     line = range[1] + 1,
+    col = range[2] + 1,
     path = vim.api.nvim_buf_get_name(0),
   }
 end
@@ -32,4 +33,5 @@ return {
   title = "Functions",
   query = query,
   get_definitions = get_function_declarations,
+  name_node_index = 1,
 }

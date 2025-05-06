@@ -7,6 +7,7 @@ local ensured_installed = {
   "jsdoc",
   "query",
   "rust",
+  "angular",
 }
 
 return {

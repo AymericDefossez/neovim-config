@@ -17,3 +17,7 @@ map('n', '<leader>fs', function()
   if not vim.tbl_contains(authorized_file_types, vim.bo.filetype) then return end
   require("pickers.signatures_picker").signatures_picker()
 end, opts("Find signatures"))
+
+map('n', '<leader>fS', function ()
+  require("pickers.not_documented_block_picker").signatures_picker()
+end, opts("Find signatures without documentation"))

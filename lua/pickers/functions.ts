@@ -18,6 +18,10 @@ export function add(a: number, b: number): number {
 }
 
 export class Functions {
+  /**
+   * The title of the class.
+   * @type {string}
+   */
   public title: string = 'Calculator';
 
   private readonly _version: string = '1.0.0';
@@ -26,7 +30,14 @@ export class Functions {
     private readonly _name: string
   ) {}
 
+  /**
+   * Multiply 2 numbers.
+   * @param {number} a - The first number.
+   * @param {number} b - The second number.
+   * @return {number} the result of the multiplication.
+   */
   public multiply(a: number, b: number): number {
+    // ffzefzefze
     const result: number = a * b;
     return result;
   }

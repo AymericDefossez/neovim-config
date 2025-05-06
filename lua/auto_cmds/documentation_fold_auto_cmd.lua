@@ -1,6 +1,6 @@
 local group_id = vim.api.nvim_create_augroup("foldDocumentation", { clear = true })
 
-vim.api.nvim_create_autocmd("BufRead", {
+vim.api.nvim_create_autocmd("BufEnter", {
   group = group_id,
   pattern = { "*.ts" },
   callback = function ()

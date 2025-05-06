@@ -1,3 +1,5 @@
+local ts_utils = require("nvim-treesitter.ts_utils")
+
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
@@ -24,11 +26,19 @@ local function get_signatures()
 
   for type, data in pairs(signatures_types) do
     -- print("looping on " .. type)
+    -- local query = "((comment)." .. data.query .. ")"
     local treesitter_query = vim.treesitter.query.parse(vim.bo.filetype, data.query)
     for _, match, _ in treesitter_query:iter_matches(root, 0, 0, -1, { all=false }) do
-      local signature = data.get_definitions(match)
-      if signature.name then
-        table.insert(signatures, signature)
+      local node = match[data.name_node_index]
+      local parent = node:parent()
+      local prev_node = ts_utils.get_previous_node(parent)
+      local skip = prev_node and prev_node:type() == "comment"
+
+      if not skip then
+        local signature = data.get_definitions(match)
+        if signature.name then
+          table.insert(signatures, signature)
+        end
       end
     end
     -- table.insert(signatures, { name = data.title, path = vim.api.nvim_buf_get_name(0), line = 0, disabled = true })
@@ -46,7 +56,7 @@ M.signatures_picker = function(opts)
   end)
 
   pickers.new(opts, {
-    prompt_title = "Functions",
+    prompt_title = "Signatures without documentation",
     finder = finders.new_table({
       results = signatures,
       entry_maker = function(entry)
