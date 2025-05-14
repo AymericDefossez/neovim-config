@@ -3,6 +3,7 @@ local table_has_value = require("utils.table_has_value")
 local exclude_parent_types = {
   "class_declaration",
   "arrow_function",
+  "function_declaration",
 }
 
 local function build_variable_signature(name_node, type_node, bufnr)
