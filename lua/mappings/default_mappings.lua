@@ -7,6 +7,8 @@ map("n", "<C-k>", "<C-w>k", opts("Go to the top window"))
 map("n", "<C-l>", "<C-w>l", opts("Go to the right window"))
 map("n", "<leader><Esc>", "<Cmd>noh<CR>", opts("Clear search highlights"))
 
+map("v", "p", "\"_dP", opts("Paste without yank"))
+
 map("n", "<leader>ci", function()
   vim.lsp.buf.code_action({
     apply = true,
