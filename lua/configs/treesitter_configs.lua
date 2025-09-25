@@ -2,6 +2,7 @@ local ensured_installed = {
   "lua",
   "html",
   "css",
+  "scss",
   "typescript",
   "javascript",
   "jsdoc",

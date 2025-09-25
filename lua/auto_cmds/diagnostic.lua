@@ -9,7 +9,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
 			if not has_floating_win() then
 				vim.diagnostic.open_float({
           border = { "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" },
-          focusable = false,
         })
 			end
 		end

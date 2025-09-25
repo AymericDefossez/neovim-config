@@ -24,9 +24,7 @@ local function get_signatures()
   local tree = parser:parse()[1]
   local root = tree:root()
 
-  for type, data in pairs(signatures_types) do
-    -- print("looping on " .. type)
-    -- local query = "((comment)." .. data.query .. ")"
+  for _, data in pairs(signatures_types) do
     local treesitter_query = vim.treesitter.query.parse(vim.bo.filetype, data.query)
     for _, match, _ in treesitter_query:iter_matches(root, 0, 0, -1, { all=false }) do
       local node = match[data.name_node_index]
@@ -41,7 +39,6 @@ local function get_signatures()
         end
       end
     end
-    -- table.insert(signatures, { name = data.title, path = vim.api.nvim_buf_get_name(0), line = 0, disabled = true })
   end
 
   return signatures
