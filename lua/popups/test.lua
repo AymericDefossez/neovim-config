@@ -35,4 +35,4 @@ function MyMenu()
   ShowMenu(opts, cb)
 end
 
-vim.keymap.set("n", "<leader>o", "<cmd>lua MyMenu()<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>o", "<cmd>lua MyMenu()<CR>", { noremap = true, silent = true })
